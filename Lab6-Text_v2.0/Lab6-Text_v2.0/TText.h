@@ -29,6 +29,9 @@ public:
 
 	static void InitMem(size_t s);
 	static void MemClear(TText &txt);
+
+	static void PrintFree();
+	void SetStr(char *_str = "\0");
 };
 
 

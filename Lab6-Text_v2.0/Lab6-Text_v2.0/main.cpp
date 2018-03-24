@@ -7,9 +7,10 @@ void clreol(void);
 void gotoxy(int x, int y);
 
 TMem TLink::mem;
+int LinkCount = 100;
 
 int main() {
-	TLink::InitMem(100);
+	TLink::InitMem(LinkCount);
 
 	char fileName[] = "C:\\Users\\User\\Documents\\GitHub projects\\Lab6-Text\\Source.txt";
 	TText text;
@@ -26,7 +27,7 @@ int main() {
 		cout << s << endl;
 		
 		switch (s) {
-		case 'i': cout << "r - read\np - print\ns - save\nc - copy\nq - quit\ne - clear\na - go to previous link\nz - go to next link\nx - " << 
+		case 'i': cout << "r - read\np - print\ns - save\nc - copy\nq - quit\ne - clear\nf - print free\na - go to previous link\nz - go to next link\nx - " << 
 						  "go to down link\n1 - insert next line\n2 - insert next section\n3 - insert down line\n4 - insert down section\n" << 
 						  "5 - delete next link\n6 - delete down link\n"; break;
 		case 'r': text.Read(fileName); break;
@@ -34,6 +35,7 @@ int main() {
 		case 's': text.Save("C:\\Users\\User\\Documents\\GitHub projects\\Lab6-Text\\SavedText.txt"); break;
 		//case 'c': TText tmp; tmp.Save("C:\\Users\\User\\Documents\\GitHub projects\\Lab6-Text\\Copy.txt"); break;
 		case 'e': clrscr(); cout << "i - info\n"; break;
+		case 'f': TLink::PrintFree(); break;
 		case 'q': TLink::MemClear(text); exit(0);
 		case 'a': text.GoPrevLink(); text.Print(); break;
 		case 'z': text.GoNextLink(); text.Print(); break;

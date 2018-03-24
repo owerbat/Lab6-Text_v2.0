@@ -37,23 +37,12 @@ void TLink::InitMem(size_t s) {
 
 	TLink *tmp = mem.pFirst;
 	for (int i = 0; i < s - 1; i++) {
+		tmp->SetStr();
 		tmp->pNext = tmp + 1;
 		tmp++;
 	}
+	mem.pLast->SetStr();
 	mem.pLast->pNext = NULL;
-
-	/*int len = sizeof(TLink) * s;
-
-	mem.pFirst = (TLink *) new char[len];
-	mem.pFree = mem.pFirst;
-	mem.pLast = mem.pFirst + (len - sizeof(TLink));
-
-	TLink *tmp = mem.pFirst;
-	for (int i = 1; i < s - 1; i++) {
-		tmp->pNext = tmp + sizeof(TLink) * i;
-		tmp = tmp->pNext;
-	}
-	mem.pLast->pNext = NULL;*/
 }
 
 void TLink::MemClear(TText &txt) {
@@ -75,6 +64,33 @@ void TLink::MemClear(TText &txt) {
 		tmp++;
 	}
 }
+
+void TLink::PrintFree() {
+	TLink *tmp = mem.pFree;
+	int i = 1;
+
+	while (tmp->pNext) {
+		cout << i << ") ";
+		if (tmp->str[0] != '\0') {
+			cout << tmp->str << endl;
+		}
+		else {
+			cout << "\"Empty\"" << endl;
+		}
+		tmp = tmp->pNext;
+		i++;
+	}
+
+	cout << i++ << ") ";
+	mem.pLast->str[0] != '\0' ? cout << mem.pLast->str << endl : cout << "\"Empty\"" << endl;
+
+	//cout << "\nCount of free links: " << i << endl;
+}
+
+void TLink::SetStr(char *_str) {
+	strncpy_s(str, _str, 80);
+}
+
 
 
 
