@@ -12,7 +12,7 @@ int LinkCount = 100;
 int main() {
 	TLink::InitMem(LinkCount);
 
-	char fileName[] = "C:\\Users\\User\\Documents\\GitHub projects\\Lab6-Text\\Source.txt";
+	char fileName[] = "C:\\Users\\User\\Documents\\GitHub projects\\Lab6-Text_v2.0\\Source.txt";
 	TText text;
 	char s;
 	char buf[80];
@@ -35,8 +35,8 @@ int main() {
 				  if (text.GetpFirst() == NULL) { cout << "Reading error\n"; }
 				  else { readFlag = true; cout << "Successful reading\n"; }; break;
 		case 'p': text.Print(); break;
-		case 's': text.Save("C:\\Users\\User\\Documents\\GitHub projects\\Lab6-Text\\SavedText.txt"); cout << "Successful saving\n"; break;
-		//case 'c': TText tmp; tmp.Save("C:\\Users\\User\\Documents\\GitHub projects\\Lab6-Text\\Copy.txt"); break;
+		case 's': text.Save("C:\\Users\\User\\Documents\\GitHub projects\\Lab6-Text_v2.0\\SavedText.txt"); cout << "Successful saving\n"; break;
+		//case 'c': TText tmp; tmp.Save("C:\\Users\\User\\Documents\\GitHub projects\\Lab6-Text_v2.0\\Copy.txt"); break;
 		case 'e': clrscr(); cout << "i - info\n"; break;
 		case 'f': TLink::PrintFree(); break;
 		case 'd': if (readFlag) { TLink::MemClear(text); cout << "Memory was cleared\n"; }
