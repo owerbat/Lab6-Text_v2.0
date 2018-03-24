@@ -125,6 +125,10 @@ TLink TText::GetCurr() {
 	return *pCurr;
 }
 
+TLink *TText::GetpFirst() {
+	return pFirst;
+}
+
 void TText::SetCurrFalse() {
 	pCurr->isFree = false;
 }
@@ -147,25 +151,21 @@ void TText::GoPrevLink() {
 
 void TText::InsNextLine(char *s) {
 	TLink *NewLink = new TLink(s, pCurr->pNext, NULL);
-	//NewLink->isFree = false;
 	pCurr->pNext = NewLink;
 }
 
 void TText::InsNextSection(char *s) {
 	TLink *NewLink = new TLink(s, NULL, pCurr->pNext);
-	//NewLink->isFree = false;
 	pCurr->pNext = NewLink;
 }
 
 void TText::InsDownLine(char *s) {
 	TLink *NewLink = new TLink(s, pCurr->pDown, NULL);
-	//NewLink->isFree = false;
 	pCurr->pDown = NewLink;
 }
 
 void TText::InsDownSection(char *s) {
 	TLink *NewLink = new TLink(s, NULL, pCurr->pDown);
-	//NewLink->isFree = false;
 	pCurr->pDown = NewLink;
 }
 
@@ -175,7 +175,6 @@ void TText::DelNext() {
 	if (pCurr->pNext != NULL) {
 		TLink *tmp = pCurr->pNext;
 		pCurr->pNext = tmp->pNext;
-		//tmp->isFree = true;
 		delete tmp;
 	}
 }
@@ -184,7 +183,6 @@ void TText::DelDown() {
 	if (pCurr->pDown != NULL) {
 		TLink *tmp = pCurr->pDown;
 		pCurr->pDown = tmp->pNext;
-		//tmp->isFree = true;
 		delete tmp;
 	}
 }
@@ -212,13 +210,11 @@ TLink *TText::ReadRec(ifstream& file) {
 			tmp->pDown = ReadRec(file);
 		else if (first == NULL) {
 			first = new TLink(buf);
-			//first->isFree = false;
 			tmp = first;
 		}
 		else {
 			tmp->pNext = new TLink(buf);
 			tmp = tmp->pNext;
-			//tmp->isFree = false;
 		}
 	}
 
@@ -229,6 +225,8 @@ void TText::Read(char *fn) {
 	ifstream ifs(fn);
 	if(fn)
 		pCurr = pFirst = ReadRec(ifs);
+	if (pFirst == NULL)
+		throw "Reading error";
 }
 
 void TText::PrintText(TLink *tmp) {

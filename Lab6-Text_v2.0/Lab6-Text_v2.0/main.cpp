@@ -16,6 +16,7 @@ int main() {
 	TText text;
 	char s;
 	char buf[80];
+	bool readFlag = false;
 
 	cout << "i - info\n";
 
@@ -27,16 +28,20 @@ int main() {
 		cout << s << endl;
 		
 		switch (s) {
-		case 'i': cout << "r - read\np - print\ns - save\nc - copy\nq - quit\ne - clear\nf - print free\na - go to previous link\nz - go to next link\nx - " << 
-						  "go to down link\n1 - insert next line\n2 - insert next section\n3 - insert down line\n4 - insert down section\n" << 
-						  "5 - delete next link\n6 - delete down link\n"; break;
-		case 'r': text.Read(fileName); break;
+		case 'i': cout << "r - read\np - print\ns - save\nc - copy\nq - quit\ne - clear\nf - print free\nd - clear memory\n" << 
+						  "a - go to previous link\nz - go to next link\nx - go to down link\n1 - insert next line\n2 - insert next section\n" << 
+						  "3 - insert down line\n4 - insert down section\n5 - delete next link\n6 - delete down link\n"; break;
+		case 'r': text.Read(fileName);
+				  if (text.GetpFirst() == NULL) { cout << "Reading error\n"; }
+				  else { readFlag = true; cout << "Successful reading\n"; }; break;
 		case 'p': text.Print(); break;
-		case 's': text.Save("C:\\Users\\User\\Documents\\GitHub projects\\Lab6-Text\\SavedText.txt"); break;
+		case 's': text.Save("C:\\Users\\User\\Documents\\GitHub projects\\Lab6-Text\\SavedText.txt"); cout << "Successful saving\n"; break;
 		//case 'c': TText tmp; tmp.Save("C:\\Users\\User\\Documents\\GitHub projects\\Lab6-Text\\Copy.txt"); break;
 		case 'e': clrscr(); cout << "i - info\n"; break;
 		case 'f': TLink::PrintFree(); break;
-		case 'q': TLink::MemClear(text); exit(0);
+		case 'd': if (readFlag) { TLink::MemClear(text); cout << "Memory was cleared\n"; }
+				  else cout << "There is nothing to clear\n"; break;
+		case 'q': if (readFlag) { TLink::MemClear(text); } exit(0);
 		case 'a': text.GoPrevLink(); text.Print(); break;
 		case 'z': text.GoNextLink(); text.Print(); break;
 		case 'x': text.GoDownLink(); text.Print(); break;

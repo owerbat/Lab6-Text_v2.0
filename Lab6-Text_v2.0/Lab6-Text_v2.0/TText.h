@@ -49,6 +49,7 @@ public:
 	//TText operator=(TText &t);   // не закончено
 
 	TLink GetCurr();
+	TLink *GetpFirst();
 	void SetCurrFalse();
 
 	void GoNextLink();
