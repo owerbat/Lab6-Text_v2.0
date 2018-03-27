@@ -28,7 +28,7 @@ int main() {
 		cout << s << endl;
 		
 		switch (s) {
-		case 'i': cout << "r - read\np - print\ns - save\nc - copy\nq - quit\ne - clear\nf - print free\nd - clear memory\n" << 
+		case 'i': cout << "r - read\np - print\ns - save\nq - quit\ne - clear\nf - print free\nd - clear memory\n" << 
 						  "a - go to previous link\nz - go to next link\nx - go to down link\n1 - insert next line\n2 - insert next section\n" << 
 						  "3 - insert down line\n4 - insert down section\n5 - delete next link\n6 - delete down link\n"; break;
 		case 'r': text.Read(fileName);

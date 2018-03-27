@@ -199,7 +199,7 @@ void TText::SetLine(char *s) {
 
 TLink *TText::ReadRec(ifstream& file) {
 	char buf[80];
-	TLink *tmp, *first = NULL;
+	TLink *tmp = NULL, *first = NULL;
 
 	while (!file.eof()) {
 		file.getline(buf, 80, '\n');
